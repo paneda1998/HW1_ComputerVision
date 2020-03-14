@@ -14,18 +14,17 @@ x_edge = np.zeros(img.shape, np.float)
 y_edge = np.zeros(img.shape, np.float)
 img = img.astype(dtype=np.float)
 
-# y edgeing...
 for i in range(300):
     for j in range(400):
         if (j == 400 - 1):
-            y_edge[i, j] = -1 * img[i, j]  # it is zero padded : img[i,j+1] = 0 & img[i,j+1] - img[i,j] = -img[i,j]
+            y_edge[i, j] = -1 * img[i, j]
         else:
-            y_edge[i, j] = img[i, j + 1] - img[i, j]  # forward derivation :y
+            y_edge[i, j] = img[i, j + 1] - img[i, j]
 
         if (i == 300 - 1):
-            x_edge[i, j] = -1 * img[i, j]  # it is zero padded : img[i+1,j] = 0 & img[i+1,j] - img[i,j] = -img[i,j]
+            x_edge[i, j] = -1 * img[i, j]
         else:
-            x_edge[i, j] = img[i + 1, j] - img[i, j]  # forward derivation :x
+            x_edge[i, j] = img[i + 1, j] - img[i, j]
 
 y_edge = np.absolute(y_edge)
 x_edge = np.absolute(x_edge)
@@ -52,4 +51,3 @@ cv2.imshow('MainImage', img)
 cv2.imshow('meanFilter', low_pass)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
-
